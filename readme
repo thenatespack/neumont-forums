@@ -1,0 +1,11 @@
+
+Pages:
+index.php: Home Page
+login.php: Login Page
+sign_up.php: Sign up Page
+
+
+
+Util_Pages:
+db_connect: reduces recalls to db to connect
+init_db: runs the sql file to initialize db 
