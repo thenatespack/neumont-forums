@@ -7,7 +7,6 @@ if ($sql === false) {
     die("Failed to read SQL file.");
 }
 
-// Split SQL statements by semicolon
 $queries = array_filter(array_map('trim', explode(';', $sql)));
 
 foreach ($queries as $query) {
