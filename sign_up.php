@@ -8,8 +8,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     addUser(
         $username,
-        $password,
-        $email
+        $email,
+        $password
     );
 
 }

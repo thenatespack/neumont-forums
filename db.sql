@@ -48,3 +48,11 @@ CREATE TABLE UserRoles (
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (role_id) REFERENCES Roles(role_id)
 );
+
+CREATE TABLE User_2fa (
+    user_id INT PRIMARY KEY,
+    code VARCHAR(6) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+);

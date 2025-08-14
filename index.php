@@ -1,9 +1,3 @@
-
-<?php
-
-echo phpinfo();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +6,10 @@ echo phpinfo();
     <title>Neumont Forums</title>
 </head>
 <body>
-    
+    <navbar>
+        <a>
+            Home
+        </a>
+    </navbar>
 </body>
 </html>
