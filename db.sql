@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS forum_db;
 CREATE DATABASE forum_db;
 USE forum_db;
 
+DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -10,12 +11,14 @@ CREATE TABLE Users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS Categories;
 CREATE TABLE Categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL UNIQUE,
     description TEXT
 );
 
+DROP TABLE IF EXISTS Threads;
 CREATE TABLE Threads (
     thread_id INT PRIMARY KEY AUTO_INCREMENT,
     category_id INT NOT NULL,
