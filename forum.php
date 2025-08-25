@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neumont Forums</title>
+    <title>Document</title>
 </head>
 <body>
-    <?php include 'navbar.php';?>
-    <h1>Home</h1>
+    <?php include 'navbar.php'; ?>
+    <h1>Forum</h1>
 </body>
 </html>
