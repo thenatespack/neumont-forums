@@ -11,12 +11,13 @@
     <div>
         <!--catergories  go here -->
     </div>
-    <div>
+    <div class="nav.inner">
         <?php
         //something like that
         //foreach
         //echo htmlspecialchars()
         ?>  
+        Something Something, Jacob Dumb
     </div>
 </body>
 </html>

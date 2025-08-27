@@ -1,8 +1,9 @@
 <?php
 $is_logged_in =false;
 ?>
-<navbar>
-    <a href="Home">Home</a>
+<link rel="stylesheet" type="text/css" href="public\site.css">
+<navbar class="nav-inner">
+    <a href="index.php">Home</a>
     <a href="forum.php">Forum</a>
     <a href="Your Posts">Your Posts</a>
     <?php echo  $is_logged_in ?'': '<a href="Log In"></a>' ?>

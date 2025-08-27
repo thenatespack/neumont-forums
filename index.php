@@ -8,5 +8,6 @@
 <body>
     <?php include 'navbar.php';?>
     <h1>Home</h1>
+    This is a Fucken Test I want to Die
 </body>
 </html>
