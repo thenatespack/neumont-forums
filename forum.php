@@ -8,5 +8,15 @@
 <body>
     <?php include 'navbar.php'; ?>
     <h1>Forum</h1>
+    <div>
+        <!--catergories  go here -->
+    </div>
+    <div>
+        <?php
+        //something like that
+        //foreach
+        //echo htmlspecialchars()
+        ?>  
+    </div>
 </body>
 </html>
