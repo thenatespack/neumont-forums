@@ -7,7 +7,7 @@
 /* Primary palette sampled to match neumont.edu visuals. */
 :root{
   --bg: #FFDB58;
-  --bg2: #1B1212;               /* page background */
+  --bg2: #353935;               /* page background */
   --surface: #ffffff;          /* panels/cards */
   --primary: #0b2a4a;          /* deep navy / brand-like dark */
   --accent: #00bfcf;           /* bright teal/cyan accent */
