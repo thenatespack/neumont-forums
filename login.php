@@ -18,9 +18,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $storedHash = $row["password_hash"];
 
         if (password_verify($password, $storedHash)) {
-            // ✅ Correct password
+            $_SESSION["SignIN"] = true;   
             $_SESSION["user_id"] = $row["user_id"];
-             $message = "✅ Login successful!";
+            $message = "✅ Login successful!";
             header("Location: index.php"); // redirect to dashboard or feed
             exit;
         } else {
