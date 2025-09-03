@@ -1,6 +1,6 @@
 <?php
 include "db_connect.php";
-include "navbar.php";
+include "navbar.php"; 
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $username = $_POST["username"];

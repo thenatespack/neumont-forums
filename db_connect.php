@@ -352,7 +352,12 @@ function addUser(string $username, string $email, string $password): void
         return;
     }
     $stmt2fa->close();
-    send2FACodeToUser($email, $twoFactorCode);
+    try {
+        send2FACodeToUser($email, $twoFactorCode);
+        $_SESSION["signup_message"] = "✅ Account created. A 2FA code has been sent to your email.";
+    } catch (Exception $e) {
+        $_SESSION["signup_message"] = "⚠️ Account created, but email failed: " . $e->getMessage();
+    }
 }
 
 function verifyUser($email, $twoFactorCode): array {

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$is_logged_in = $_SESSION["SignIN"] ?? false;
+$is_logged_in = $_SESSION["user_id"] ?? false;
 ?>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
 
@@ -9,10 +9,13 @@ $is_logged_in = $_SESSION["SignIN"] ?? false;
     <div class="flex items-center space-x-6">
         <img src="public/images/forum_Icon.png" alt="Neumont Forums Logo" class="h-6 w-6">
         <a href="index.php" class="hover:text-yellow-300 font-semibold">Home</a>
-        <?php echo $is_logged_in ? 
-            '<a href="yourposts.php" class="hover:text-yellow-300 font-semibold">Your Posts</a>' : 
-            '<a href="sign_up.php" class="hover:text-yellow-300 font-semibold">Sign Up</a>'; 
-        ?>
+
+        <?php if ($is_logged_in): ?>
+            <a href="yourposts.php" class="hover:text-yellow-300 font-semibold">Your Posts</a>
+        <?php else: ?>
+            <a href="sign_up.php" class="hover:text-yellow-300 font-semibold">Sign Up</a>
+            <a href="login.php" class="hover:text-yellow-300 font-semibold">Login</a>
+        <?php endif; ?>
     </div>
 
     <!-- Right side: Profile button if logged in -->
