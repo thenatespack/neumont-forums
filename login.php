@@ -21,32 +21,16 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
             $_SESSION["SignIN"] = true;   
             $_SESSION["user_id"] = $row["user_id"];
             $message = "✅ Login successful!";
-            header("Location: index.php"); // redirect to dashboard or feed
+            header("Location: index.php"); 
             exit;
         } else {
-            // ❌ Wrong password
            $message = "❌ Invalid password.";
         }
     } else {
         $message = "❌ Username not found.";
     }
-
-    // echo $username;
-    // $hash = '$2y$10$lLThaSBDcP/3o7sr3Tcn0.4hmyp9UVu5PomqwZKpJo8TaAUoNk3yi';
-    // echo password_hash($password, PASSWORD_DEFAULT);
-    // if (password_verify($password, $hash)) {
-    //     echo '<br> true';
-    //     $message = "✅ Login successful! Redirecting...";
-    //     header("refresh:2; url=home.php");
-    //     exit();
-    // } else {
-    //     $message = "❌ Invalid password.";
-    // }
-
 }
 ?>
-
-
 <div class="min-h-screen flex flex-col items-center justify-center bg-black text-yellow-400">
     <h1 class="text-4xl font-bold mb-6">Login</h1>
 
