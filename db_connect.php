@@ -287,7 +287,7 @@ function send2FACodeToUser($email, $code)
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('auth@nuemont-forums.edu', 'Neumont-Forums');
+        $mail->setFrom('auth@neumont-forums.edu', 'Neumont-Forums');
         $mail->addAddress($email);
 
         $baseURL = 'http://127.0.0.1/neumont-forums/email.php';
@@ -316,14 +316,31 @@ function send2FACodeToUser($email, $code)
 function addUser(string $username, string $email, string $password): void
 {
     global $conn;
+
+    $stmt = $conn->prepare("SELECT user_id FROM Users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+        $stmt->close();
+        $_SESSION["signup_message"] = "❌ Email already registered.";
+        return;;
+    }
+    $stmt->close();
+
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $currentTimestamp = date('Y-m-d H:i:s'); 
-    $stmt = $conn->prepare("INSERT INTO Users (username, email, password_hash, created_at) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare(
+        "INSERT INTO Users (username, email, password_hash, created_at) VALUES (?, ?, ?, ?)"
+    );
+
     $stmt->bind_param("ssss", $username, $email, $hashedPassword, $currentTimestamp);
 
     if (!$stmt->execute()) {
-        die("Execute failed: " . $stmt->error);
+         $_SESSION["signup_message"] = "❌ Error: " . $stmt->error;
+        return;
     }
+    
     $user_id = $stmt->insert_id; 
     $stmt->close();
     $twoFactorCode = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT); 
@@ -331,7 +348,8 @@ function addUser(string $username, string $email, string $password): void
     $stmt2fa = $conn->prepare("INSERT INTO User_2fa (user_id, code, expires_at) VALUES (?, ?, ?)");
     $stmt2fa->bind_param("iss", $user_id, $twoFactorCode, $expiresAt);
     if (!$stmt2fa->execute()) {
-        die("2FA code insert failed: " . $stmt2fa->error);
+        $_SESSION["signup_message"] = "2FA code insert failed: " . $stmt2fa->error;
+        return;
     }
     $stmt2fa->close();
     send2FACodeToUser($email, $twoFactorCode);

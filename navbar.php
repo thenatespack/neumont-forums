@@ -1,6 +1,6 @@
 <?php
 session_start();
-$is_logged_in = $_SESSION["SignIN"];
+$is_logged_in = $_SESSION["SignIN"] ?? false;
 ?>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
 
