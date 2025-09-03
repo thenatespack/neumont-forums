@@ -17,7 +17,6 @@
         //foreach
         //echo htmlspecialchars()
         ?>  
-        Something Something, Jacob Dumb
     </div>
 </body>
 </html>

@@ -8,25 +8,31 @@ function send2FACodeToUser($email, $code) {
     $mail = new PHPMailer(true);
 
     try {
-        //Server settings
-        $mail->SMTPDebug = 2;                      // Enable verbose debug output (0 = off)
-        $mail->isSMTP();                           // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';      // Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                  // Enable SMTP authentication
+        $mail->SMTPDebug = 0;                      
+        $mail->isSMTP();                           
+        $mail->Host       = 'smtp.gmail.com';      
+        $mail->SMTPAuth   = true;                  
         $mail->Username   = ''; // Your Gmail address
-        $mail->Password   = '';   // Your Gmail App Password (16 chars)
-        $mail->SMTPSecure = 'tls';                 // Enable TLS encryption
-        $mail->Port       = 587;                   // TCP port to connect to
-
-        //Recipients
+        $mail->Password   = ''; // Your Gmail App Password (16 chars)
+        $mail->SMTPSecure = 'tls';                 
+        $mail->Port       = 587;                   
         $mail->setFrom('auth@nuemont-forums.edu', 'Neumont-Forums');
-        $mail->addAddress($email);  // Add the recipient's email address
+        $mail->addAddress($email); 
+        $baseURL = 'http://127.0.0.1/neumont-forums/email.php'; 
+        $encodedEmail = urlencode($email);
+        $encodedCode = urlencode($code);
+        $verifyURL = "$baseURL?email=$encodedEmail&code=$encodedCode";
 
-        // Content
-        $mail->isHTML(true);  // Set email format to HTML
+        // Email content
+        $mail->isHTML(true);
         $mail->Subject = 'Your 2FA Code from Neumont-Forums';
-        $mail->Body    = "<b>Your 2FA code is: $code</b><br><p>This code is valid for the next 10 minutes.</p>";
-        $mail->AltBody = "Your 2FA code is: $code\nThis code is valid for the next 10 minutes.";
+        $mail->Body    = "
+            <h3>Your 2FA code is: <b>$code</b></h3>
+            <p>This code is valid for the next 10 minutes.</p>
+            <p>You can verify your code by clicking the link below:</p>
+            <p><a href=\"$verifyURL\">Verify 2FA Code</a></p>
+        ";
+        $mail->AltBody = "Your 2FA code is: $code\n\nThis code is valid for the next 10 minutes.\nVerify here: $verifyURL";
 
         $mail->send();
         echo '✅ Message has been sent';
@@ -34,3 +40,16 @@ function send2FACodeToUser($email, $code) {
         echo "❌ Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+
+include "navbar.php";
+
+if(isset($_GET["code"])){
+    $code = $_GET["code"];
+    $email = $_GET["email"];
+    if(verifyUser($email, $code)) {
+        echo "log in";
+    }
+}
+
+
+?>
