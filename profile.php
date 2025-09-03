@@ -3,7 +3,7 @@ include "db_connect.php"; // your DB connection
 include "navbar.php"; // optional, your menu
 
 // Check if user is logged in
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["SignIN"]) || !$_SESSION["SignIN"]) {
     header("Location: login.php");
     exit;
 }
