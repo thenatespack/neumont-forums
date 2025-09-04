@@ -78,7 +78,6 @@ function createPost(int $thread_id, int $user_id, string $content): int
     return $post_id;
 }
 
-
 function getPostsByThread(int $thread_id): array
 {
     global $conn;
@@ -136,11 +135,7 @@ function getUserById(int $user_id): ?array
     return $user ?: null;
 }
 
-// --- New functions ---
-
-// Edit a post (only content can be changed)
-function editPost(int $post_id, int $user_id, string $newContent): bool
-{
+function editPost(int $post_id, int $user_id, string $newContent): bool{
     global $conn;
 
     // Ensure the user owns the post before editing

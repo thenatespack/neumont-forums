@@ -40,7 +40,7 @@ $threads = getThreadsByCategory($category_id);
     <h1 class="text-4xl font-extrabold mb-8 text-yellow-400 drop-shadow-lg text-center">
         <?php echo htmlspecialchars($category['name']); ?>
     </h1>
-
+    <a href="new_thread.php">New Thread</a>
     <?php if (empty($threads)): ?>
         <p class="text-center text-yellow-300 italic">No threads available in this category.</p>
     <?php else: ?>
