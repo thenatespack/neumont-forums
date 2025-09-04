@@ -12,6 +12,7 @@ $is_logged_in = $_SESSION["SignIN"] ?? false;
 
         <?php if ($is_logged_in): ?>
             <a href="yourposts.php" class="hover:text-yellow-300 font-semibold">Your Posts</a>
+            <a href="new_thread.php" class="hover:text-yellow-300 font-semibold">Make a Thread</a>
         <?php else: ?>
             <a href="sign_up.php" class="hover:text-yellow-300 font-semibold">Sign Up</a>
             <a href="login.php" class="hover:text-yellow-300 font-semibold">Login</a>
